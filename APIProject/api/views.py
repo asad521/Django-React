@@ -40,3 +40,4 @@ class ArticleDetails(generics.GenericAPIView, mixins.RetrieveModelMixin,
     def delete(self, request, id):
         return self.destroy(request, id=id) 
 
+asdfs
