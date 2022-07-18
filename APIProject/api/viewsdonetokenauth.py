@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from .models import Articles
-from .serializers import ArticlesSerializers, UserSerializer
+from .serializers import ArticlesSerializers
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import APIView
@@ -11,7 +11,7 @@ from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth.models import User
+
 # Create your views here.
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -20,8 +20,4 @@ class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = (TokenAuthentication,)
 
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
     
