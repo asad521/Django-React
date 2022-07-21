@@ -8,7 +8,7 @@ from .models import Articles
 @admin.register(Articles)
 class ArticleModel(admin.ModelAdmin):
     list_filter = ('title', 'description')
-    list_display= ('title', 'description')
+    list_display= ('title', 'description','id')
 
 
 
