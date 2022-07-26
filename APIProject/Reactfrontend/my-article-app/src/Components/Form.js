@@ -53,7 +53,7 @@ export const Form = (props) => {
     <h4>Description</h4>
     <textarea placeholder="Enter the post" onChange={(e)=> setDescription(e.target.value)}></textarea>
     <br></br>
-    <button className='btn btn-success' onClick={updateRequest}>Update Post</button>
+    <button className='btn btn-primary' onClick={updateRequest}>Update Post</button>
     <button className='btn btn-success' onClick={postRequest}>Post Article</button>
 
   

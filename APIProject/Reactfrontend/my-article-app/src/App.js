@@ -34,11 +34,12 @@ useEffect(() => {
 
   const postRequest = (res) => {
     setTest(res)
+
   }
 
   return (
     // <CookiesProivder>
-    <div className="App">
+    <div className="container my-5 ">
       React FrontEnd for Article Application
     <ArticleList articles={articles} setWord={word =>setWord(word) }  getID={id=>getID(id)}  ></ArticleList>
     <Form word={word} updateInfo={updateInfo} postRequest={postRequest}  ></Form>
