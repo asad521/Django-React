@@ -10,47 +10,37 @@ const initialState = {
   pending: false,
   error: false,
   token: [],
-  articles: [],
+  articles: null,
 };
 
 export const counterSlice = createSlice({
-  
+
   name: 'counter',
   initialState,
   reducers: {
-    addArticles: (state, action) => {
-      state.articles.push(action.payload)
-
+    
+    addArticles: (state=initialState , action) => {
+      console.log(typeof action.payload)
+      console.log(typeof state.articles)
+      // const clone = {...original}
+       state.articles= [...state.articles,action.payload]
+  
+ 
+    },
+    addAllArticles: (state, action) => {
+      state.articles=action.payload
     },
     removeArticles: (state, action) => {
       console.log(typeof action.payload)
-      const id  = parseInt(action.payload); 
-      const articles = state.articles.filter(articleItem => articleItem.id !== id)
-      state.articles = articles
+      const id = parseInt(action.payload);
+      console.log(state.articles)
+      const result = state.articles.filter(item => item.id !== id
 
+      )
+      console.log(result)
+      state.articles = result
       
 
-      // const df = existingUsers.filter(a => a.id !== id);
-      // console.log(df)
-      // state.articles= df;
-      
-
-      // const a =state.articles.filter(article => article.id !== action.payload)
-      // console.log(a)
-    //   return {
-    //     articles: state.articles.filter(a => {
-    //       a.id > 395
-    //     })
-
-    // }
-
-    },
-
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
     },
     loginStart: (state, action) => {
       state.pending = true;
@@ -77,8 +67,7 @@ export const counterSlice = createSlice({
   // },
 });
 
-export const { removeArticles, increment, decrement, loginStart, loginSuccess, loginError, addArticles } = counterSlice.actions;
-export const selectCount = (state) => state.counter.value;
+export const { removeArticles,  loginStart, loginSuccess, loginError, addArticles,addAllArticles } = counterSlice.actions;
 
 
 

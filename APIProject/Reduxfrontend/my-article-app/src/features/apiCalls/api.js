@@ -1,6 +1,5 @@
-import { loginStart, loginSuccess, loginError, addArticles, removeArticles } from "../counter/counterSlice";
+import { loginStart, loginSuccess, loginError, addArticles, removeArticles,addAllArticles } from "../counter/counterSlice";
 import { useSelector } from 'react-redux';
-
 export const loginCall = async (args, dispatch) => {
   console.log('in login call')
   const username = args.email;
@@ -18,6 +17,7 @@ export const loginCall = async (args, dispatch) => {
     }).then(res => res.json()).then(res => {
       console.log('this is resposne of loginCall=' + JSON.stringify(res))
       dispatch(loginSuccess(res))
+
       // cookies.set('mytoken', res.token)sdf
       // navigate('/articles/');
 
@@ -46,7 +46,7 @@ export const articlePostRequest = async (args, dispatch) => {
       // console.log(JSON.stringify (res)+'this is post response')
       // const data = JSON.stringify (res);
       console.log(res +'response of post request')
-      dispatch(addArticles([res]))
+      dispatch(addArticles(res))
     })
 
   } catch (error) {
@@ -64,9 +64,10 @@ export const articleDeleteRequest = async (id, dispatch) => {
         'Content-Type': 'application/json',
         'Authorization': 'Token 381997a3f6f126820d3d11d9b55b49a1ea409972'
       }
-    }).then(res => res.text()) // or res.json()
+    }).then(res => res.json()) 
       .then(res => console.log(res))
-    dispatch(removeArticles(id))
+        dispatch(removeArticles(id))
+
 
 
   } catch (error) {
@@ -78,7 +79,9 @@ export const articleDeleteRequest = async (id, dispatch) => {
 }
 
 
-export const getArticles = async (dispatch) => {
+
+
+export const getAllArticles = async (dispatch) => {
 
   try {
     const res =fetch('http://127.0.0.1:8000/api/articles/', {
@@ -88,10 +91,13 @@ export const getArticles = async (dispatch) => {
         'Authorization': 'Token 381997a3f6f126820d3d11d9b55b49a1ea409972'
       }
     }).then(res => res.json()).then(res => {
-      // console.log(JSON.res +'response of get articles')
-      dispatch(addArticles(res));
+          
+          dispatch(addAllArticles(res));
+        
+        
   })
 
+  
  
 
 
@@ -99,3 +105,4 @@ export const getArticles = async (dispatch) => {
     console.log('error in get article request api')
   }
 }
+

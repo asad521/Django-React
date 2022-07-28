@@ -1,20 +1,25 @@
 import React from 'react'
-import {useState} from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { loginCall } from '../apiCalls/api';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Login = () => {
+    const navigate = useNavigate();
 
     const dispatch = useDispatch()
-    const [email,setEmail] = useState([]);
-    const [password,setPassword] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [password, setPassword] = useState([]);
     // console.log('print')
     const submitFunction = (e) => {
-        loginCall({email,password},dispatch)
+        loginCall({ email, password }, dispatch)
+        navigate('/articles/');
+
 
     }
- 
-    return(
+
+    return (
         <div>
             <form>
                 <div className="mb-3">
@@ -33,6 +38,7 @@ export const Login = () => {
 
                 <button type="button" className="btn btn-primary" onClick={submitFunction}>Submit</button>
             </form>
+            
         </div>
 
     )

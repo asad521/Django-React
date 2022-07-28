@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { articleDeleteRequest } from '../apiCalls/api';
 
-export const ArticleItemUI = (props) => {
+export const ArticleItemUI = (article) => {
 
     const dispatch = useDispatch();
     const [id, setID] = useState();
@@ -12,14 +12,12 @@ export const ArticleItemUI = (props) => {
     }
     return (
         <div>
-            {props.articles.map(item => {
-                return (
-                    <div>
-                        <h2>{item.title}</h2>
-                        <p>{item.description}</p>
+                 <div key={article.articles.id}>
+                        <h2>{article.articles.title}</h2>
+                        <p>{article.articles.description}</p>
+                        <button value={article.articles.id} onClick={e => del(e.target.value)}>Update</button>
+                        <button value={article.articles.id} onClick={e => del(e.target.value)} >Delete</button>
                     </div>
-                )
-            })}
 
         </div>
     )
