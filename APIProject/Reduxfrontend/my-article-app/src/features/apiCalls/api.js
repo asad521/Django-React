@@ -78,7 +78,20 @@ export const articleDeleteRequest = async (id, dispatch) => {
 
 }
 
+export const articleUpdateRequest = async ({title,description,dispatch,id}) => {
+  console.log(id +'this is id we are changing')
 
+  
+  fetch(`http://127.0.0.1:8000/api/articles/${id}/`,{
+    'method': 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Token 381997a3f6f126820d3d11d9b55b49a1ea409972'
+    }, body:JSON.stringify({title,description})
+  }).then(res => res.json()).then(res => console.log(res))
+
+
+}
 
 
 export const getAllArticles = async (dispatch) => {
